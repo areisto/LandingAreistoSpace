@@ -1,0 +1,35 @@
+{
+  "public/images/about-bg.svg": {
+    "file": "assets/about-bg-d9019e29.svg",
+    "src": "public/images/about-bg.svg"
+  },
+  "public/images/home-bg.svg": {
+    "file": "assets/home-bg-231dd6cd.svg",
+    "src": "public/images/home-bg.svg"
+  },
+  "public/images/howitworks-bg.svg": {
+    "file": "assets/howitworks-bg-f37a4d32.svg",
+    "src": "public/images/howitworks-bg.svg"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-3fa92593.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/home-bg-231dd6cd.svg",
+      "assets/about-bg-d9019e29.svg",
+      "assets/howitworks-bg-f37a4d32.svg"
+    ],
+    "css": [
+      "assets/app-3fa92593.css"
+    ],
+    "file": "assets/app-cbd3c139.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-3fa92593.css",
+    "src": "resources/js/app.css"
+  }
+}

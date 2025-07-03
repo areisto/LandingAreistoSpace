@@ -1,0 +1,17 @@
+.subscriptions-container {
+  padding: 48px 4px;
+  background: linear-gradient(104deg, #FFF -103.7%, #D6F0EB 41.55%);;
+  .desc{
+    max-width: 351px;
+    width: 100%;
+    text-align: center;
+    color: #171725;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    span {
+      color: #32B599;
+    }
+  }
+}
