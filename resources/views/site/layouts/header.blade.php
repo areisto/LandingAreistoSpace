@@ -11,7 +11,7 @@
       </nav>
       <div class="d-flex align-items-center gap-2">
         <button class="secondary-cstm-button d-none d-sm-block">تسجيل دخول</button>
-        <button class="primary-cstm-button d-none d-sm-block">ابدأ مجانا</button>
+        <a href="https://spaces.areisto.com/login" class="primary-cstm-button d-none d-sm-block">ابدأ مجانا</a>
         @include('site.layouts.mobile-menu')
       </div>
     </div>
