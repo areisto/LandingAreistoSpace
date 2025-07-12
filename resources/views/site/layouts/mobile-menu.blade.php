@@ -15,8 +15,8 @@
         <a href="#how-it-works" class="nav-link-cstm"><p>كيف نعمل</p></a>
         <a href="#subscriptions" class="nav-link-cstm"><p>الاشتراكات</p></a>
         <a href="#testimonials" class="nav-link-cstm"><p>اراء العملاء</p></a>
-        <button class="secondary-cstm-button ">تسجيل دخول</button>
-        <button class="primary-cstm-button ">ابدأ مجانا</button>
+        <a href="https://dashboard.areistospace.com/login" class="secondary-cstm-button ">تسجيل دخول</a>
+        <a href="https://dashboard.areistospace.com/login" class="primary-cstm-button ">ابدأ مجانا</a>
       </div>
     </div>
   </div>

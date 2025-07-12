@@ -11,11 +11,11 @@
         منصة متكاملة لإدارة مساحات العمل، تتيح لك تنظيم الحجوزات، متابعة توفر المكاتب، الكهرباء، الإنترنت، والخدمات المرافقة بكل سلاسة. صممت لتناسب احتياجات الشركات الصغيرة، المستقلين، والفرق الناشئة
       </p>
       <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4 mt-4">
-        <button class="primary-cstm-button" style="width: 190px">ابدأ مجانا</button>
-        <button class="primary-cstm-button d-flex align-items-center" style="background: #000">
+        <a href="https://dashboard.areistospace.com/login" class="primary-cstm-button" style="width: 190px">ابدأ مجانا</a>
+        <a href="https://play.google.com/store/apps/details?id=gaza.aristospace" target="_blank" class="primary-cstm-button d-flex align-items-center" style="background: #000">
           <span class="me-2">تنزيل التطبيق منGoogle Play</span>
           <img src="{{ asset('images/gp.svg')}}" alt="google-play" width="24" height="24" />
-        </button>
+        </a>
       </div>
       <div class="mt-4">
         <img src="{{ asset('images/home.png')}}" alt="home-img" class="home-img-style" />

@@ -10,8 +10,8 @@
         <a href="#testimonials" class="nav-link-cstm"><span class="no-wrap-text">اراء العملاء</span></a>
       </nav>
       <div class="d-flex align-items-center gap-2">
-        <button class="secondary-cstm-button d-none d-sm-block">تسجيل دخول</button>
-        <a href="https://spaces.areisto.com/login" class="primary-cstm-button d-none d-sm-block">ابدأ مجانا</a>
+        <a href="https://dashboard.areistospace.com/login" class="secondary-cstm-button d-none d-sm-block">تسجيل دخول</a>
+        <a href="https://dashboard.areistospace.com/login" class="primary-cstm-button d-none d-sm-block">ابدأ مجانا</a>
         @include('site.layouts.mobile-menu')
       </div>
     </div>
