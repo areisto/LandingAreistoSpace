@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2025 at 11:46 AM
+-- Generation Time: Jul 27, 2025 at 04:32 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -134,7 +134,20 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (41, 7, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (42, 7, 'body', 'rich_text_box', 'Body', 0, 1, 1, 1, 1, 1, '{}', 2),
 (43, 7, 'created_at', 'timestamp', 'Created At', 0, 0, 0, 0, 0, 0, '{}', 3),
-(44, 7, 'updated_at', 'timestamp', 'Updated At', 0, 1, 1, 0, 0, 0, '{}', 4);
+(44, 7, 'updated_at', 'timestamp', 'Updated At', 0, 1, 1, 0, 0, 0, '{}', 4),
+(45, 8, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(46, 8, 'invoice_id', 'text', 'Invoice Id', 0, 1, 1, 1, 1, 1, '{}', 2),
+(47, 8, 'plan', 'text', 'Plan', 0, 1, 1, 1, 1, 1, '{}', 3),
+(48, 8, 'quantity', 'number', 'Quantity', 0, 1, 1, 1, 1, 1, '{}', 4),
+(49, 8, 'total', 'text', 'Total', 0, 1, 1, 1, 1, 1, '{}', 5),
+(50, 8, 'status', 'text', 'Status', 0, 1, 1, 1, 1, 1, '{}', 6),
+(51, 8, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 7),
+(52, 8, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 8),
+(53, 9, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(54, 9, 'type', 'text', 'Type', 0, 1, 1, 1, 1, 1, '{}', 2),
+(55, 9, 'price', 'number', 'Price', 0, 1, 1, 1, 1, 1, '{}', 3),
+(56, 9, 'created_at', 'timestamp', 'Created At', 0, 1, 1, 0, 0, 0, '{}', 4),
+(57, 9, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 5);
 
 -- --------------------------------------------------------
 
@@ -171,7 +184,9 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'clients', 'clients', 'Client', 'Clients', 'voyager-people', 'App\\Models\\Client', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2025-06-27 11:57:46', '2025-07-01 08:38:47'),
 (5, 'contacts', 'contacts', 'Contact', 'Contacts', 'voyager-paper-plane', 'App\\Models\\Contact', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2025-06-27 12:07:08', '2025-06-27 12:08:00'),
 (6, 'newsletters', 'newsletters', 'Newsletter', 'Newsletters', 'voyager-news', 'App\\Models\\Newsletter', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2025-06-27 12:21:32', '2025-06-27 12:21:32'),
-(7, 'privacy_policies', 'privacy-policies', 'Privacy Policy', 'Privacy Policies', 'voyager-lock', 'App\\Models\\PrivacyPolicy', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2025-07-03 06:11:41', '2025-07-03 06:12:23');
+(7, 'privacy_policies', 'privacy-policies', 'Privacy Policy', 'Privacy Policies', 'voyager-lock', 'App\\Models\\PrivacyPolicy', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2025-07-03 06:11:41', '2025-07-03 06:12:23'),
+(8, 'invoices', 'invoices', 'Invoice', 'Invoices', 'voyager-tag', 'App\\Models\\Invoice', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2025-07-27 10:49:26', '2025-07-27 10:49:26'),
+(9, 'plans', 'plans', 'Plan', 'Plans', 'voyager-pie-graph', 'App\\Models\\Plan', NULL, NULL, NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2025-07-27 10:51:00', '2025-07-27 11:02:54');
 
 -- --------------------------------------------------------
 
@@ -187,6 +202,23 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoices`
+--
+
+CREATE TABLE `invoices` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `invoice_id` varchar(255) DEFAULT NULL,
+  `plan` varchar(255) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `total` mediumblob DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -249,7 +281,9 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (11, 1, 'Clients', '', '_self', 'voyager-people', NULL, NULL, 15, '2025-06-27 11:57:46', '2025-06-27 11:57:46', 'voyager.clients.index', NULL),
 (12, 1, 'Contacts', '', '_self', 'voyager-paper-plane', NULL, NULL, 16, '2025-06-27 12:07:08', '2025-06-27 12:07:08', 'voyager.contacts.index', NULL),
 (13, 1, 'Newsletters', '', '_self', 'voyager-news', NULL, NULL, 17, '2025-06-27 12:21:32', '2025-06-27 12:21:32', 'voyager.newsletters.index', NULL),
-(14, 1, 'Privacy Policies', '', '_self', 'voyager-lock', '#000000', NULL, 18, '2025-07-03 06:11:41', '2025-07-03 06:22:08', 'voyager.privacy-policies.edit', '1');
+(14, 1, 'Privacy Policies', '', '_self', 'voyager-lock', '#000000', NULL, 18, '2025-07-03 06:11:41', '2025-07-03 06:22:08', 'voyager.privacy-policies.edit', '1'),
+(15, 1, 'Invoices', '', '_self', 'voyager-tag', NULL, NULL, 19, '2025-07-27 10:49:27', '2025-07-27 10:49:27', 'voyager.invoices.index', NULL),
+(16, 1, 'Plans', '', '_self', 'voyager-pie-graph', '#000000', NULL, 20, '2025-07-27 10:51:00', '2025-07-27 10:51:46', 'voyager.plans.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -381,7 +415,17 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (42, 'read_privacy_policies', 'privacy_policies', '2025-07-03 06:11:41', '2025-07-03 06:11:41'),
 (43, 'edit_privacy_policies', 'privacy_policies', '2025-07-03 06:11:41', '2025-07-03 06:11:41'),
 (44, 'add_privacy_policies', 'privacy_policies', '2025-07-03 06:11:41', '2025-07-03 06:11:41'),
-(45, 'delete_privacy_policies', 'privacy_policies', '2025-07-03 06:11:41', '2025-07-03 06:11:41');
+(45, 'delete_privacy_policies', 'privacy_policies', '2025-07-03 06:11:41', '2025-07-03 06:11:41'),
+(46, 'browse_invoices', 'invoices', '2025-07-27 10:49:27', '2025-07-27 10:49:27'),
+(47, 'read_invoices', 'invoices', '2025-07-27 10:49:27', '2025-07-27 10:49:27'),
+(48, 'edit_invoices', 'invoices', '2025-07-27 10:49:27', '2025-07-27 10:49:27'),
+(49, 'add_invoices', 'invoices', '2025-07-27 10:49:27', '2025-07-27 10:49:27'),
+(50, 'delete_invoices', 'invoices', '2025-07-27 10:49:27', '2025-07-27 10:49:27'),
+(51, 'browse_plans', 'plans', '2025-07-27 10:51:00', '2025-07-27 10:51:00'),
+(52, 'read_plans', 'plans', '2025-07-27 10:51:00', '2025-07-27 10:51:00'),
+(53, 'edit_plans', 'plans', '2025-07-27 10:51:00', '2025-07-27 10:51:00'),
+(54, 'add_plans', 'plans', '2025-07-27 10:51:00', '2025-07-27 10:51:00'),
+(55, 'delete_plans', 'plans', '2025-07-27 10:51:00', '2025-07-27 10:51:00');
 
 -- --------------------------------------------------------
 
@@ -455,7 +499,17 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (42, 1),
 (43, 1),
 (44, 1),
-(45, 1);
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1);
 
 -- --------------------------------------------------------
 
@@ -475,6 +529,29 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `plans`
+--
+
+CREATE TABLE `plans` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `price` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `plans`
+--
+
+INSERT INTO `plans` (`id`, `type`, `price`, `created_at`, `updated_at`) VALUES
+(1, 'يومي', 10, '2025-07-27 10:53:51', '2025-07-27 10:53:51'),
+(2, 'أسبوعي', 50, '2025-07-27 10:54:02', '2025-07-27 10:54:02'),
+(3, 'شهري', 200, '2025-07-27 10:54:15', '2025-07-27 10:54:15');
 
 -- --------------------------------------------------------
 
@@ -646,6 +723,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `invoices`
+--
+ALTER TABLE `invoices`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `menus`
 --
 ALTER TABLE `menus`
@@ -699,6 +782,12 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `plans`
+--
+ALTER TABLE `plans`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `privacy_policies`
@@ -763,19 +852,25 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `invoices`
+--
+ALTER TABLE `invoices`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `menus`
@@ -787,7 +882,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -805,13 +900,19 @@ ALTER TABLE `newsletters`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `plans`
+--
+ALTER TABLE `plans`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `privacy_policies`

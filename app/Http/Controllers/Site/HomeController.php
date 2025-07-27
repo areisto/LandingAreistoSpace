@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Models\Contact;
 use App\Models\Newsletter;
+use App\Models\Plan;
 use App\Models\PrivacyPolicy;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class HomeController extends Controller
 			$clients = Client::orderBy('id', 'desc')
 				->take(10)
 				->get();
-        return view('site.home.index', compact('clients'));
+				$plans = Plan::orderBy('price', 'asc')->get();
+        return view('site.home.index', compact('clients', 'plans'));
     }
 
 		public function privacy() {

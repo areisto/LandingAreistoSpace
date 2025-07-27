@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Site\PaymentController;
 use App\Http\Controllers\Site\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,8 @@ Route::get('/privacy-policy', [HomeController::class, 'privacy'])->name('privacy
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/subscribe', [HomeController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::post('/contact-form-submit', [HomeController::class, 'submitContactForm'])->name('home.contact.submit');
+Route::post('/crosspay/redirect', [PaymentController::class, 'redirectToCrosspay'])->name('crosspay.redirect');
+Route::get('/crosspay/callback', [PaymentController::class, 'handleCallback'])->name('crosspay.callback');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

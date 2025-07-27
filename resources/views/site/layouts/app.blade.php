@@ -11,7 +11,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Island+Moments&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap" rel="stylesheet">
   @vite(['resources/scss/app.scss', 'resources/js/app.js'])
-
+  @stack('scripts')
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CoworkingSpace",
+      "name": "Areisto Space",
+      "url": "https://areistospace.com/",
+      "logo": "https://areistospace.com/images/logo.png",
+      "description": "Areisto Space هو موقع يقدم مساحات عمل مشتركة حديثة مجهزة بكافة الخدمات لتلبية احتياجات الشركات والأفراد.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "شارع الكنز، مجمع شراب، طابق 6",
+        "addressLocality": "غزة",
+        "addressRegion": "غزة",
+        "postalCode": "",
+        "addressCountry": "فلسطين"
+      },
+      "telephone": "‪+970567772520‬",
+      "email": "areistoco@gmail.com",
+      "sameAs": [
+        "https://www.facebook.com/Areisto",
+        "https://www.linkedin.com/company/areisto"
+      ],
+      "openingHours": "Mo-Fr 08:00-18:00"
+    }
+  </script>
 </head>
 <body>
     @include('site.layouts.header')
@@ -27,7 +52,7 @@
       function onScroll() {
         let currentSectionId = "";
         sections.forEach(section => {
-          const sectionTop = section.offsetTop - 100; // adjust based on header height
+          const sectionTop = section.offsetTop - 100;
           if (window.scrollY >= sectionTop) {
             currentSectionId = section.getAttribute("id");
           }

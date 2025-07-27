@@ -203,5 +203,116 @@
       </div>
     </section>
   @endif
+  @if (!empty($plans) && count($plans) > 0)
+    <section id="support" class="support-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <p class="sub-title">الدعم المالي</p>
+          <h1 class="title">ساهم في تمكين الطلاب من الحصول على مساحات عمل مجانية</h1>
+          <p class="desc">
+          من خلال مساهمتك، نوفر مساحات عمل مجانية للطلاب الذين لا يستطيعون تحمل تكاليفها.  
+          اختر الباقة التي ترغب في دعمها، وحدد عدد الاشتراكات، وسنقوم بتوجيه دعمك بالكامل لتوفير بيئة تعليمية وإبداعية مناسبة للطلاب.
+          </p>
+        </div>
+        <div class="row  mb-4">
+          @foreach($plans as $plan)
+            <div class="col-12 col-md-4 mb-3">
+              <div class="plan-card {{ $loop->first ? 'active' : '' }}" data-price="{{ $plan['price'] }}" data-type="{{ $plan['type'] }}">
+                <h4>{{ $plan['type'] }}</h4>
+                <p>{{ $plan['price'] }}$</p>
+                <small class="text-muted">لكل طالب</small>
+              </div>
+            </div>
+          @endforeach
+        </div>
+        <div class="support-form">
+          <div class="counter-box">
+            <label for="quantity">عدد الاشتراكات:</label>
+            <div class="counter">
+              <button id="decrement">-</button>
+              <input type="number" id="quantity" value="1" min="1" />
+              <button id="increment">+</button>
+            </div>
+          </div>
+          <div class="price-box">
+            <p>السعر النهائي: <span id="totalPrice">10</span>$</p>
+          </div>
+          <form action="{{ route('crosspay.redirect') }}" method="POST" target="_blank" id="donation-form">
+            @csrf
+            <input type="hidden" name="total" id="totalInput" />
+            <input type="hidden" name="plan" id="plan" />
+            <input type="hidden" name="quantity" id="quantityInputHidden" />
+            <div class="text-center mt-3">
+              <button type="submit" class="primary-cstm-button" id="supportNow">ادعم الآن</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  @endif
   @include('site.components.contact-form')
+
+  @push('scripts')
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const planCards = document.querySelectorAll('.plan-card');
+    const quantityInput = document.getElementById('quantity');
+    const totalPriceEl = document.getElementById('totalPrice');
+    const incrementBtn = document.getElementById('increment');
+    const decrementBtn = document.getElementById('decrement');
+    const supportBtn = document.getElementById('supportNow');
+    const totalInput = document.getElementById('totalInput');
+    const planInput = document.getElementById('plan');
+    const donationForm = document.getElementById('donation-form');
+    const quantityHiddenInput = document.getElementById('quantityInputHidden');
+    let selectedPrice = 10;
+    let selectedPlan = 'daily';
+    const defaultCard = document.querySelector('.plan-card[data-type="daily"]');
+    if (defaultCard) {
+      defaultCard.classList.add('active');
+    }
+    function updateTotal() {
+      const quantity = parseInt(quantityInput.value) || 1;
+      const total = quantity * selectedPrice;
+      totalPriceEl.textContent = total;
+      totalInput.value = total;
+    }
+    planCards.forEach(card => {
+      card.addEventListener('click', () => {
+        planCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        selectedPrice = parseFloat(card.dataset.price);
+        selectedPlan = card.dataset.type;
+        updateTotal();
+        supportBtn.disabled = false;
+        planInput.value = selectedPlan;
+      });
+    });
+    incrementBtn.addEventListener('click', () => {
+      quantityInput.value = parseInt(quantityInput.value) + 1;
+      updateTotal();
+    });
+    decrementBtn.addEventListener('click', () => {
+      const current = parseInt(quantityInput.value);
+      if (current > 1) {
+        quantityInput.value = current - 1;
+        updateTotal();
+      }
+    });
+    quantityInput.addEventListener('input', updateTotal);
+    donationForm.addEventListener('submit', function (e) {
+      const quantity = parseInt(quantityInput.value) || 1;
+      totalInput.value = quantity * selectedPrice;
+      const activeCard = document.querySelector('.plan-card.active');
+      if (activeCard) {
+        planInput.value = activeCard.dataset.type;
+      }
+      quantityHiddenInput.value = quantity;
+    });
+    updateTotal();
+    planInput.value = selectedPlan;
+  });
+</script>
+@endpush
+
 @endsection
