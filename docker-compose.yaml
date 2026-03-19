@@ -1,0 +1,106 @@
+services:
+  # 1. Redis Service
+  aristo_workspace_redis:
+    image: redis:alpine
+    container_name: aristo_workspace_redis
+    restart: unless-stopped
+    networks:
+      - db-net-aristo-space
+
+  # 2. MySQL Database Service
+  aristo_workspace_db:
+    image: mysql:8.0
+    container_name: aristo_workspace_db
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    volumes:
+      - aristo_workspace_db_data:/var/lib/mysql
+    networks:
+      - db-net-aristo-space
+
+  # 3. Laravel App Service
+  aristo_workspace_app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: aristo_workspace_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    working_dir: /var/www/html
+    volumes:
+      - aristo_workspace_code:/var/www/html
+    depends_on:
+      - aristo_workspace_db
+      - aristo_workspace_redis
+    networks:
+      - db-net-aristo-space
+      - web_nginx
+
+  # 4. Queue Worker Service
+  aristo_workspace_queue:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: aristo_workspace_queue
+    restart: unless-stopped
+    env_file:
+      - .env
+    working_dir: /var/www/html
+    command: php artisan queue:work --tries=3
+    volumes:
+      - aristo_workspace_code:/var/www/html
+    depends_on:
+      - aristo_workspace_app
+      - aristo_workspace_db
+      - aristo_workspace_redis
+    networks:
+      - db-net-aristo-space
+
+  # 5. Scheduler Service
+  aristo_workspace_scheduler:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: aristo_workspace_scheduler
+    restart: unless-stopped
+    env_file:
+      - .env
+    working_dir: /var/www/html
+    command: php artisan schedule:work
+    volumes:
+      - aristo_workspace_code:/var/www/html
+    depends_on:
+      - aristo_workspace_app
+      - aristo_workspace_db
+      - aristo_workspace_redis
+    networks:
+      - db-net-aristo-space
+
+  # 6. Nginx Web Server
+  aristo_workspace_nginx:
+    image: nginx:stable-alpine
+    container_name: aristo_workspace_nginx
+    restart: unless-stopped
+    volumes:
+      - aristo_workspace_code:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - aristo_workspace_app
+    networks:
+      - web_nginx
+
+networks:
+  web_nginx:
+    external: true
+  db-net-aristo-space:
+    external: true
+
+volumes:
+  aristo_workspace_code:
+  aristo_workspace_db_data:
