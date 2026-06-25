@@ -10,10 +10,16 @@
       <p class="home-desc">
         منصة متكاملة لإدارة مساحات العمل، تتيح لك تنظيم الحجوزات، متابعة توفر المكاتب، الكهرباء، الإنترنت، والخدمات المرافقة بكل سلاسة. صممت لتناسب احتياجات الشركات الصغيرة، المستقلين، والفرق الناشئة
       </p>
-      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4 mt-4">
-        <a href="https://dashboard.areistospace.com/login" class="primary-cstm-button" style="width: 190px">ابدأ مجانا</a>
-        <a href="https://play.google.com/store/apps/details?id=gaza.aristospace" target="_blank" class="primary-cstm-button d-flex align-items-center" style="background: #000">
-          <span class="me-2">تنزيل التطبيق منGoogle Play</span>
+      <div class="hero-store-actions d-flex flex-column flex-sm-row align-items-center justify-content-center gap-4 mt-4">
+        <a href="https://apps.apple.com/us/app/areisto-space/id6746783371" target="_blank" rel="noopener noreferrer" class="hero-store-button hero-store-button--apple">
+          <span>تنزيل التطبيق من App Store</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M16.365 12.633c-.01-1.954 1.593-2.89 1.665-2.934-.907-1.324-2.316-1.505-2.81-1.526-1.196-.121-2.333.705-2.94.705-.609 0-1.548-.688-2.543-.67-1.307.019-2.512.761-3.184 1.929-1.36 2.356-.347 5.846.977 7.758.647.937 1.418 1.989 2.43 1.95.976-.038 1.344-.632 2.524-.632 1.18 0 1.512.632 2.542.609 1.051-.018 1.716-.956 2.358-1.896.743-1.085 1.049-2.137 1.06-2.191-.023-.008-2.032-.78-2.079-3.102Z" fill="#fff"/>
+            <path d="M14.433 5.913c.538-.652.902-1.558.803-2.463-.776.031-1.715.517-2.271 1.168-.499.577-.936 1.5-.819 2.384.866.067 1.749-.441 2.287-1.089Z" fill="#fff"/>
+          </svg>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=gaza.aristospace" target="_blank" rel="noopener noreferrer" class="hero-store-button hero-store-button--google">
+          <span>تنزيل التطبيق من Google Play</span>
           <img src="{{ asset('images/gp.svg')}}" alt="google-play" width="24" height="24" />
         </a>
       </div>
@@ -210,7 +216,7 @@
           <p class="sub-title">الدعم المالي</p>
           <h1 class="title">ساهم في تمكين الطلاب من الحصول على مساحات عمل مجانية</h1>
           <p class="desc">
-          من خلال مساهمتك، نوفر مساحات عمل مجانية للطلاب الذين لا يستطيعون تحمل تكاليفها.  
+          من خلال مساهمتك، نوفر مساحات عمل مجانية للطلاب الذين لا يستطيعون تحمل تكاليفها.
           اختر الباقة التي ترغب في دعمها، وحدد عدد الاشتراكات، وسنقوم بتوجيه دعمك بالكامل لتوفير بيئة تعليمية وإبداعية مناسبة للطلاب.
           </p>
         </div>
