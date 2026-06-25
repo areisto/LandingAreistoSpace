@@ -12,6 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(PrivacyPolicyTableSeeder::class);
+        $this->call([
+            PrivacyPolicyTableSeeder::class,
+            AdminUserSeeder::class,
+        ]);
     }
 }

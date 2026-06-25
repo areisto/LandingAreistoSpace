@@ -26,6 +26,63 @@
       font-weight: 500;
       line-height: normal;
     }
+
+    .hero-store-actions {
+      .hero-store-button {
+        min-width: 260px;
+        min-height: 48px;
+        padding: 12px 16px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.2;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+        transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .hero-store-button--apple {
+        background: #111111;
+        border: 1px solid #111111;
+
+        &:hover {
+          color: #111111;
+          background: #ffffff;
+          border-color: #111111;
+        }
+      }
+
+      .hero-store-button--google {
+        background: #32B599;
+        border: 1px solid #32B599;
+
+        &:hover {
+          color: #32B599;
+          background: #ffffff;
+          border-color: #32B599;
+        }
+      }
+
+      @media (max-width: 575.98px) {
+        .hero-store-button {
+          width: 260px;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: normal;
+          white-space: nowrap;
+          gap: 8px;
+        }
+
+        .hero-store-button--google {
+          font-size: 15px;
+        }
+      }
+    }
+
     .home-img-style {
       max-width: 703px;
       width: 100%;
